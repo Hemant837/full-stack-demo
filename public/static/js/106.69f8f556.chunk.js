@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfull_stack_demo=self.webpackChunkfull_stack_demo||[]).push([[106],{106:(s,e,a)=>{a.r(e),a.d(e,{default:()=>d});a(791);var t=a(184);const d=()=>(0,t.jsx)("div",{className:"max-w-2xl mx-auto mt-8 p-6 bg-white rounded-md shadow-md",children:(0,t.jsx)("h2",{className:"text-2xl font-semibold text-gray-800 mb-4",children:"Forgot Password"})})}}]);
+//# sourceMappingURL=106.69f8f556.chunk.js.map
