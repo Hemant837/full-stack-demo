@@ -50,7 +50,7 @@ module.exports = class PerformAuthentication {
       `
     );
 
-    if (existingUserResult.recordset.length === 0) {
+    if (existingUserResult.recordset.length > 0) {
       // User with the provided email already exists
       return { error: "Email already in use. Please use a different email." };
     }

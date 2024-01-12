@@ -7,7 +7,7 @@ exports.deleteProduct = async (req, res) => {
 
     const productId = req.params.id;
 
-    // Check if the product exists before attempting to delete
+    // Checking if the product exists before attempting to delete
     const checkProductResult = await executeQuery(
       connection,
       `
@@ -42,7 +42,7 @@ exports.updateProduct = async (req, res) => {
     const productId = req.params.id;
     const { pName, pDescription, price, imgUrl } = req.body;
 
-    // Check if the product exists before attempting to delete
+    // Checking if the product exists before attempting to delete
     const checkProductResult = await executeQuery(
       connection,
       `
@@ -78,13 +78,13 @@ exports.addProduct = async (req, res) => {
   try {
     const connection = await connectToDatabase();
 
-    const { id, pName, pDescription, price, imgUrl } = req.body;
+    const {userId, id, pName, pDescription, price, imgUrl } = req.body;
 
     const insertResult = await executeQuery(
       connection,
       `
-        INSERT INTO Products (id, pName, pDescription, price, imgUrl)
-        VALUES ('${id}', '${pName}', '${pDescription}', ${price}, '${imgUrl}')
+        INSERT INTO Products (userId, id, pName, pDescription, price, imgUrl)
+        VALUES ('${userId}','${id}', '${pName}', '${pDescription}', ${price}, '${imgUrl}')
       `
     );
 
@@ -104,9 +104,12 @@ exports.getAllProducts = async (req, res) => {
   try {
     const connection = await connectToDatabase();
 
-    // Example query execution
-    const result = await executeQuery(connection, "SELECT * FROM Products");
-    // Process the result as needed
+    const userId = req.params.id
+
+    // console.log('here is the id',userId)
+
+    const result = await executeQuery(connection, ` SELECT * FROM Products WHERE userId = '${userId}'`);
+
 
     // console.log(result.recordset);
 
@@ -114,10 +117,10 @@ exports.getAllProducts = async (req, res) => {
     res.json(result.recordset);
   } catch (err) {
     console.error("Error:", err);
-    // Handle the error and send an appropriate response
+    // Handling the error and send an appropriate response
     res.status(500).json({ error: "Internal Server Error" });
   } finally {
-    // Close the connection when done with it
+    // Closing the connection when done with it
     sql.close();
   }
 };
